@@ -2,6 +2,8 @@
 let logo = document.querySelector('h1');
 logo.addEventListener('click', (e) => {
   e.target.style.transform += 'rotate(180deg)';
+  // Interesting... adding this `gsap` disables further style changes
+  gsap.to(e.target, {duration: 2, x: 100});
 });
 
 // Event handler on group of elements
@@ -101,3 +103,10 @@ bodyHeaders.forEach(header => {
 window.onresize = () => {
   container.style.border = '5px dotted yellow';
 };
+
+// Make image pulse when clicked
+let secondImage = document.querySelector(".content-section.inverse-content img")
+secondImage.addEventListener("click", (e) => {
+  // Again, this disrupts all future animations (possibly all events)
+  gsap.to(e.target, {duration: 1, scale: 1.4, ease: 'elastic'});
+});
